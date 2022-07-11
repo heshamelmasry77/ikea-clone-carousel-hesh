@@ -1,9 +1,4 @@
 window.addEventListener('load', (event) => {
-    console.log('page is fully loaded');
-
-// Set slide position
-// Get all the slides
-// Get total number of slides
 
     const carouselWrapper = document.querySelector(".carousel-wrapper");
     const carousel = document.querySelector(".carousel");
@@ -17,8 +12,6 @@ window.addEventListener('load', (event) => {
     nextBtn.addEventListener('click', function () {
         carouselScrollLeftWidth += carouselItemOffsetWidth;
         if ((carouselScrollLeftWidth + carouselOffsetWidth) >= carouselScrollWidth) {
-            // The end of the scroll
-            // Hide right arrow
             nextBtn.style.display = "none";
             prevBtn.style.display = "block";
         } else {
@@ -28,7 +21,6 @@ window.addEventListener('load', (event) => {
     });
 
     prevBtn.addEventListener('click', () => {
-        console.log('carouselScrollLeftWidth prev: ', carouselScrollLeftWidth)
         carouselScrollLeftWidth -= carouselItemOffsetWidth;
         if (carouselScrollLeftWidth <= 0) {
             nextBtn.style.display = "block";
@@ -48,6 +40,23 @@ window.addEventListener('load', (event) => {
         // If I can slide to the right then hide the prev BTN
         nextBtn.style.display = "block";
         prevBtn.style.display = "block";
+
+        // show the right arrow if we can scroll to the left. if I am at the end of the scroll left
+        if ((carouselScrollLeftWidth + carouselOffsetWidth) >= carouselScrollWidth) {
+            // The end of the scroll
+            // Hide right arrow
+            nextBtn.style.display = "none";
+            prevBtn.style.display = "block";
+        } else {
+            prevBtn.style.display = "block";
+        }
+
+        // show the left arrow if I am at the right scroll
+        if (carouselScrollLeftWidth <= 0) {
+            nextBtn.style.display = "block";
+            prevBtn.style.display = "none";
+            carouselScrollLeftWidth = 0;
+        }
     }
 
     carouselWrapper.addEventListener("mouseout", hideCarouselArrows);
