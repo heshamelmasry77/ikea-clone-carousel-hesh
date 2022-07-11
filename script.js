@@ -51,5 +51,3 @@ prevBtn.addEventListener('click', () => {
     nextBtn.style.display = "block";
     prevBtn.style.display = "none";
 });
-
-
