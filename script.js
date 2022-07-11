@@ -1,53 +1,59 @@
+window.addEventListener('load', (event) => {
+    console.log('page is fully loaded');
+
 // Set slide position
 // Get all the slides
 // Get total number of slides
 
-// Select the carousel
-const carousel = document.querySelector(".carousel");
-let carouselOffsetWidth = carousel.offsetWidth;
+    const carouselWrapper = document.querySelector(".carousel-wrapper");
+    const carousel = document.querySelector(".carousel");
+    const carouselItem = document.querySelector(".carousel__item");
+    const carouselOffsetWidth = carousel.offsetWidth;
+    const carouselScrollWidth = carousel.scrollWidth;
+    const nextBtn = document.querySelector("#carousel__button--next");
+    const prevBtn = document.querySelector("#carousel__button--prev");
+    const carouselItemOffsetWidth = carouselItem.offsetWidth;
+    let carouselScrollLeftWidth = carousel.scrollLeft;
+    nextBtn.addEventListener('click', function () {
+        carouselScrollLeftWidth += carouselItemOffsetWidth;
+        if ((carouselScrollLeftWidth + carouselOffsetWidth) >= carouselScrollWidth) {
+            // The end of the scroll
+            // Hide right arrow
+            nextBtn.style.display = "none";
+            prevBtn.style.display = "block";
+        } else {
+            prevBtn.style.display = "block";
+        }
+        carousel.scrollLeft = carouselScrollLeftWidth;
+    });
 
-console.log("carouselOffsetWidth: ", carouselOffsetWidth);
+    prevBtn.addEventListener('click', () => {
+        console.log('carouselScrollLeftWidth prev: ', carouselScrollLeftWidth)
+        carouselScrollLeftWidth -= carouselItemOffsetWidth;
+        if (carouselScrollLeftWidth <= 0) {
+            nextBtn.style.display = "block";
+            prevBtn.style.display = "none";
+            carouselScrollLeftWidth = 0;
+        } else {
+            nextBtn.style.display = "block";
+        }
+        carousel.scrollLeft = carouselScrollLeftWidth;
+    });
 
-// Get scroll width
 
-let carouselScrollWidth = carousel.scrollWidth;
+// Show Carousel arrows on carousel hover
+    carouselWrapper.addEventListener("mouseover", showCarouselArrows);
 
-console.log("carouselScrollWidth: ", carouselScrollWidth);
-
-// Get scroll left width
-
-let carouselScrollLeftWidth = carousel.scrollLeft;
-
-console.log("carouselScrollLeftWidth: ", carouselScrollLeftWidth);
-
-
-// Select Next BTN
-const nextBtn = document.querySelector("#carousel__button--next");
-
-// Select previous BTN
-const prevBtn = document.querySelector("#carousel__button--prev");
-
-nextBtn.addEventListener('click', () => {
-    console.log('carouselScrollWidth: ', carouselScrollWidth)
-    console.log('carouselScrollLeftWidth', carouselScrollLeftWidth)
-    // To go back to the beginning
-    if (carouselScrollWidth >= carouselScrollLeftWidth) {
-        carouselScrollLeftWidth = carouselScrollWidth;
+    function showCarouselArrows() {
+        // If I can slide to the right then hide the prev BTN
+        nextBtn.style.display = "block";
+        prevBtn.style.display = "block";
     }
-    console.log('carouselScrollLeftWidth after', carouselScrollLeftWidth)
-    console.log('carouselScrollWidth after', carouselScrollWidth)
-    carousel.scrollLeft = carouselScrollLeftWidth;
-    nextBtn.style.display = "none";
-    prevBtn.style.display = "block";
 
-});
+    carouselWrapper.addEventListener("mouseout", hideCarouselArrows);
 
-prevBtn.addEventListener('click', () => {
-    console.log('carouselScrollLeftWidth prev: ', carouselScrollLeftWidth)
-    if (carouselScrollLeftWidth <= carouselScrollWidth) {
-        carouselScrollLeftWidth = 0;
+    function hideCarouselArrows() {
+        nextBtn.style.display = "none";
+        prevBtn.style.display = "none";
     }
-    carousel.scrollLeft = carouselScrollLeftWidth;
-    nextBtn.style.display = "block";
-    prevBtn.style.display = "none";
 });
