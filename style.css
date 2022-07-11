@@ -1,3 +1,9 @@
+:root {
+    --custom-black: #111;
+    --custom-white: #F5F5F4FF;
+    --custom-gray: #333;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -17,7 +23,7 @@ main {
 }
 
 .scroll-bar-improved {
-    scrollbar-color: #111;
+    scrollbar-color: var(--custom-black);
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
@@ -29,24 +35,24 @@ main {
 .scroll-bar-improved::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 2px #111;
     box-shadow: inset 0 0 2px #111;
-    background-color: rgb(245 245 244);
+    background-color: var(--custom-white);
 }
 
 .scroll-bar-improved::-webkit-scrollbar {
     height: 2px;
-    background-color: rgb(245 245 244);
+    background-color: var(--custom-white);
 }
 
 .scroll-bar-improved::-webkit-scrollbar-thumb {
-    background-color: #111;
+    background-color: var(--custom-black);
 }
 
 .carousel-wrapper {
-    width: 1280px;
+    max-width: 1280px;
+    width: 100%;
     margin: 0 auto;
     position: relative;
 }
-
 
 .carousel-wrapper .carousel__button {
     display: flex;
@@ -61,12 +67,16 @@ main {
     height: 40px;
     align-items: center;
     justify-content: center;
-    background-color: #111;
+    background-color: var(--custom-black);
     color: white;
 }
 
 .carousel-wrapper .carousel__button:hover {
-    background-color: #333;
+    background-color: var(--custom-gray);
+}
+
+.carousel__item {
+    display: block;
 }
 
 .carousel-wrapper #carousel__button--prev {
@@ -77,6 +87,7 @@ main {
 .carousel-wrapper #carousel__button--next {
     right: 0;
     margin-right: 16px;
+    display: none;
 }
 
 .carousel {
@@ -84,6 +95,9 @@ main {
     gap: 16px;
     overflow-y: hidden; /* Hide horizontal scrollbar */
     scroll-behavior: smooth;
+    white-space: nowrap;
+    overflow-x: scroll;
+
 }
 
 .carousel:hover {
@@ -91,5 +105,5 @@ main {
 }
 
 .carousel .carousel__item img {
-    height: 250px;
+    height: 258px;
 }
