@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    height: 100%;
+}
+
+main {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.scroll-bar-improved {
+    scrollbar-color: #111;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scroll-bar-improved {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.scroll-bar-improved::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 2px #111;
+    box-shadow: inset 0 0 2px #111;
+    background-color: rgb(245 245 244);
+}
+
+.scroll-bar-improved::-webkit-scrollbar {
+    height: 2px;
+    background-color: rgb(245 245 244);
+}
+
+.scroll-bar-improved::-webkit-scrollbar-thumb {
+    background-color: #111;
+}
+
+.carousel-wrapper {
+    width: 1280px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.carousel-wrapper .carousel__button {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50px;
+    border: 0;
+    font-weight: bold;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: #111;
+    color: white;
+}
+
+.carousel-wrapper .carousel__button:hover {
+    background-color: #333;
+}
+
+.carousel-wrapper #carousel__button--prev {
+    margin-left: 16px;
+    display: none;
+}
+
+.carousel-wrapper #carousel__button--next {
+    right: 0;
+    margin-right: 16px;
+}
+
+.carousel {
+    display: flex;
+    gap: 16px;
+    overflow-y: hidden; /* Hide horizontal scrollbar */
+    scroll-behavior: smooth;
+}
+
+.carousel:hover {
+    cursor: pointer;
+}
+
+.carousel .carousel__item img {
+    height: 250px;
+}
