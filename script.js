@@ -1,4 +1,4 @@
-window.addEventListener('load', (event) => {
+window.addEventListener('load', () => {
     {
         // Get elements
         const carouselWrapper = document.querySelector(".carousel-wrapper");
